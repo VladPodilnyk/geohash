@@ -13,7 +13,7 @@ const base32 = "0123456789bcdefghjkmnpqrstuvwxyz"
 // The latitude must be between -90 and 90.
 // The longitude must be between -180 and 180.
 func Encode(lat, lon float64, precision int) (string, error) {
-	if err := validateInputs(float32(lat), float32(lon), precision); err != nil {
+	if err := validateInputs(lat, lon, precision); err != nil {
 		return "", err
 	}
 
@@ -55,7 +55,7 @@ func Encode(lat, lon float64, precision int) (string, error) {
 	return string(result), nil
 }
 
-func validateInputs(lat, lon float32, precision int) error {
+func validateInputs(lat, lon float64, precision int) error {
 	if precision <= 0 {
 		return errors.New("precision must be greater than 0")
 	}
